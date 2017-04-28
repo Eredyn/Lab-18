@@ -1,0 +1,54 @@
+ERROR LOG:
+
+Upon opening page
+
+	 Parse error: syntax error, unexpected 'return arrow' (T_STRING), expecting ',' or ';' in 	C:\wamp64\www\Lab18\Lab18-ORIGINAL.php on line 123
+
+	Parse error: syntax error, unexpected 'return arrow' (T_STRING), expecting ',' or ';' in 	C:\wamp64\www\Lab18\Lab18-ORIGINAL.php on line 125
+
+	SOLUTION:
+
+	Had to delete incorrect syntax operator and join lines 123 & 124, 125 & 126
+
+Upon loading page
+
+	Notice: Undefined index: add in C:\wamp64\www\Lab18\Lab18-ORIGINAL.php on line 39
+
+	Notice: Undefined index: update in C:\wamp64\www\Lab18\Lab18-ORIGINAL.php on line 53
+
+	Notice: Undefined index: clear in C:\wamp64\www\Lab18\Lab18-ORIGINAL.php on line 68
+
+	SOLUTION:
+	
+	Needed to ensure that operations weren't trying to grab empty values, added an isset
+
+Upon "Add items to cart" (FIRST TIME PER ITEM)
+
+	Undefined offset: 102 in C:\wamp64\www\Lab18\Lab18-ORIGINAL.php on line 47
+
+	SOLUTION:
+	
+	Undefined offset, the program is attempting to add a new value to a value that it assumes 	is already established. However, the first time you add a value, there is no initial value 	to add 	the new quantity to, so it results in an error. This can be fixed by creating a 	new if variable preceeding the problem area. 
+
+			if(!isset($_SESSION['cart'][$k])) { 
+				$_SESSION['cart'][$k]=0;
+			}
+
+Upon "Clear Cart"
+
+	Undefined index: cart in C:\wamp64\www\Lab18\Lab18-PIAT.php on line 139
+
+	SOLUTION:
+	
+	Had to re-initialize the cart since clear destroyed the session, causing the error.
+
+Upon "Update Cart" (IF CART IS EMPTY)
+
+	Undefined index: u_qty in C:\wamp64\www\Lab18\Lab18-PIAT.php on line 74
+	Invalid argument supplied for foreach() in C:\wamp64\www\Lab18\Lab18-PIAT.php on line 74
+
+	SOLUTION:
+
+	Had to ensure that it was not trying to update values that weren't even there. If the
+	cart was empty then there was nothing to update, causing an error. Added in an extra
+	if statement to determine if u_qty was even set (isset) before allowing it to trigger.
