@@ -109,7 +109,7 @@ else if (isset($_POST['clear']))
 <body>
 <h2>Catalog</h2>
 Please add items from the list below to your shopping cart.
-<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+<form action="<?php $_SERVER['PHP_SELF']?>" method="post">
 <table border="0" cellspacing="10">
 
 <?php
